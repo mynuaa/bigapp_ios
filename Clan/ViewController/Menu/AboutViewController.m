@@ -46,11 +46,49 @@
     [scrolview addSubview:appinfo];
     
     UILabel *lbl_version = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(appinfo)+4, kSCREEN_WIDTH-30, 20)];
-    lbl_version.font = [UIFont fontWithSize:12.f];
+    lbl_version.font = [UIFont fontWithSize:14.f];
     lbl_version.textColor = K_COLOR_DARK_Cell;
     lbl_version.textAlignment = NSTextAlignmentCenter;
-    lbl_version.text = [NSString stringWithFormat:@"版本号：%@ (%@)",[Util currentAppVersion],[NSString returnStringWithPlist:kBIGAPPVERSION]];
+    lbl_version.text = [NSString stringWithFormat:@"版本号：1.0.1 (%@)",[NSString returnStringWithPlist:kBIGAPPVERSION]];
     [scrolview addSubview:lbl_version];
+    
+    
+    UILabel *lbl_time = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_version)+2, kSCREEN_WIDTH-30, 20)];
+    lbl_time.font = [UIFont fontWithSize:14.f];
+    lbl_time.textColor = K_COLOR_DARK_Cell;
+    lbl_time.textAlignment = NSTextAlignmentCenter;
+    lbl_time.text = [NSString stringWithFormat:@"发布时间：2016.4.2  22:43"];
+    [scrolview addSubview:lbl_time];
+    
+    UILabel *lbl_Repairer = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_time)+2, kSCREEN_WIDTH-30, 20)];
+    lbl_Repairer.font = [UIFont fontWithSize:14.f];
+    lbl_Repairer.textColor = K_COLOR_DARK_Cell;
+    lbl_Repairer.textAlignment = NSTextAlignmentCenter;
+    lbl_Repairer.text = [NSString stringWithFormat:@"技术维护：纸飞机南航青年网络社区"];
+    [scrolview addSubview:lbl_Repairer];
+    
+    UILabel *lbl_mail = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_Repairer)+2, kSCREEN_WIDTH-30, 20)];
+    lbl_mail.font = [UIFont fontWithSize:14.f];
+    lbl_mail.textColor = K_COLOR_DARK_Cell;
+    lbl_mail.textAlignment = NSTextAlignmentCenter;
+    lbl_mail.text = [NSString stringWithFormat:@"iOS支持：monkeyclue@163.com"];
+    [scrolview addSubview:lbl_mail];
+    
+    UILabel *lbl_upgrade_title = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_mail)+30, kSCREEN_WIDTH-30, 20)];
+    lbl_upgrade_title.numberOfLines = 0;
+    lbl_upgrade_title.font = [UIFont fontWithSize:15.f];
+    lbl_upgrade_title.textColor = K_COLOR_DARK;
+    lbl_upgrade_title.textAlignment = NSTextAlignmentLeft;
+    lbl_upgrade_title.text = [NSString stringWithFormat:@"更新内容:"];
+    [scrolview addSubview:lbl_upgrade_title];
+    
+    UILabel *lbl_upgrade = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_upgrade_title)+12, kSCREEN_WIDTH-30, 154)];
+    lbl_upgrade.numberOfLines = 0;
+    lbl_upgrade.font = [UIFont fontWithSize:14.f];
+    lbl_upgrade.textColor = K_COLOR_DARK_Cell;
+    lbl_upgrade.textAlignment = NSTextAlignmentLeft;
+    lbl_upgrade.text = [NSString stringWithFormat:@"优化掉了暂时未完成接口的功能；\n加入了新的注释；\n完成了“关于我们”的更新。\n\n\n\n\n\n"];//此处提行挤居上
+    [scrolview addSubview:lbl_upgrade];
     
     UIFont *desFont = [UIFont fontWithSize:12.f];
     NSString *des_app = [NSString returnPlistWithKeyValue:kAppDescription];

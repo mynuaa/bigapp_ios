@@ -63,7 +63,7 @@
 {
     self.title = @"消息提醒";
     [self setUpNaviButtons];
-    BaseTableView *table = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
+    BaseTableView *table = [[BaseTableView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 0) style:UITableViewStylePlain];/*UITableViewStyleGrouped];*/
     if (_fromTabbar) {
         table.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT-64-kTABBAR_HEIGHT);
     }
@@ -75,7 +75,7 @@
     [Util setExtraCellLineHidden:table];
     self.tableview = table;
     [self.view addSubview:table];
-    [self buildUpTopView];
+    //    [self buildUpTopView];
 }
 
 //导航栏按钮
@@ -93,67 +93,67 @@
 }
 
 //顶部view
-- (void)buildUpTopView
-{
-    UIView *topview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 120)];
-    topview.backgroundColor = [UIColor whiteColor];
-    self.topView = topview;
-    
-    //添加按钮 我的帖子 坛友互动 系统提醒 公共消息
-    float btnWidth = 43.f;
-    float btnHeigh = btnWidth;
-    float space_h = 16.f;
-    float space_v = 21.f;
-    float valibleWidth = kSCREEN_WIDTH-2*space_h;
-    float btnTempSpace = (valibleWidth-4*btnWidth)/3.0;
-    //计算起始坐标 使其保持居中
-    float btnSpace = btnTempSpace > 50 ? 50 : btnTempSpace;
-    float space_h_final = btnTempSpace > 50 ? (kSCREEN_WIDTH-4*btnWidth-3*50)/2.0 : space_h;
-
-    //帖子消息
-    UIButton *btn_tiezi = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn_tiezi setImage:kIMG(@"message_tiezi") forState:UIControlStateNormal];
-    btn_tiezi.frame = CGRectMake(space_h_final, space_v, btnWidth, btnHeigh);
-    btn_tiezi.exclusiveTouch = YES;
-    [btn_tiezi addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    btn_tiezi.tag = 1;
-    self.btn_tiezi = btn_tiezi;
-    [self resetButtonTitlePos:btn_tiezi WithTitle:@"帖子消息"];
-    [topview addSubview:btn_tiezi];
-    
-    //坛友互动
-    UIButton *btn_tanyou = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn_tanyou setImage:kIMG(@"message_tanyou") forState:UIControlStateNormal];
-    btn_tanyou.frame = CGRectMake(kVIEW_BX(btn_tiezi)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
-    btn_tanyou.exclusiveTouch = YES;
-    btn_tanyou.tag = 2;
-    [btn_tanyou addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.btn_tanyou = btn_tanyou;
-    [self resetButtonTitlePos:btn_tanyou WithTitle:@"坛友互动"];
-    [topview addSubview:btn_tanyou];
-    
-    //系统提醒
-    UIButton *btn_xitong = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn_xitong setImage:kIMG(@"message_xitong") forState:UIControlStateNormal];
-    btn_xitong.frame = CGRectMake(kVIEW_BX(btn_tanyou)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
-    btn_xitong.exclusiveTouch = YES;
-    [btn_xitong addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self resetButtonTitlePos:btn_xitong WithTitle:@"系统提醒"];
-    btn_xitong.tag = 3;
-    self.btn_xitong = btn_xitong;
-    [topview addSubview:btn_xitong];
-    
-    //公共消息
-    UIButton *btn_gonggong = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn_gonggong setImage:kIMG(@"message_gonggong") forState:UIControlStateNormal];
-    btn_gonggong.frame = CGRectMake(kVIEW_BX(btn_xitong)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
-    btn_gonggong.exclusiveTouch = YES;
-    btn_gonggong.tag = 4;
-    [btn_gonggong addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    self.btn_gonggong = btn_gonggong;
-    [self resetButtonTitlePos:btn_gonggong WithTitle:@"公共消息"];
-    [topview addSubview:btn_gonggong];
-}
+//- (void)buildUpTopView
+//{
+//    UIView *topview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 120)];
+//    topview.backgroundColor = [UIColor whiteColor];
+//    self.topView = topview;
+//
+//    //添加按钮 我的帖子 坛友互动 系统提醒 公共消息
+//    float btnWidth = 43.f;
+//    float btnHeigh = btnWidth;
+//    float space_h = 16.f;
+//    float space_v = 21.f;
+//    float valibleWidth = kSCREEN_WIDTH-2*space_h;
+//    float btnTempSpace = (valibleWidth-4*btnWidth)/3.0;
+//    //计算起始坐标 使其保持居中
+//    float btnSpace = btnTempSpace > 50 ? 50 : btnTempSpace;
+//    float space_h_final = btnTempSpace > 50 ? (kSCREEN_WIDTH-4*btnWidth-3*50)/2.0 : space_h;
+//
+//    //帖子消息
+//    UIButton *btn_tiezi = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn_tiezi setImage:kIMG(@"message_tiezi") forState:UIControlStateNormal];
+//    btn_tiezi.frame = CGRectMake(space_h_final, space_v, btnWidth, btnHeigh);
+//    btn_tiezi.exclusiveTouch = YES;
+//    [btn_tiezi addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    btn_tiezi.tag = 1;
+//    self.btn_tiezi = btn_tiezi;
+//    [self resetButtonTitlePos:btn_tiezi WithTitle:@"帖子消息"];
+//    [topview addSubview:btn_tiezi];
+//
+//    //坛友互动
+//    UIButton *btn_tanyou = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn_tanyou setImage:kIMG(@"message_tanyou") forState:UIControlStateNormal];
+//    btn_tanyou.frame = CGRectMake(kVIEW_BX(btn_tiezi)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
+//    btn_tanyou.exclusiveTouch = YES;
+//    btn_tanyou.tag = 2;
+//    [btn_tanyou addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    self.btn_tanyou = btn_tanyou;
+//    [self resetButtonTitlePos:btn_tanyou WithTitle:@"坛友互动"];
+//    [topview addSubview:btn_tanyou];
+//
+//    //系统提醒
+//    UIButton *btn_xitong = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn_xitong setImage:kIMG(@"message_xitong") forState:UIControlStateNormal];
+//    btn_xitong.frame = CGRectMake(kVIEW_BX(btn_tanyou)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
+//    btn_xitong.exclusiveTouch = YES;
+//    [btn_xitong addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self resetButtonTitlePos:btn_xitong WithTitle:@"系统提醒"];
+//    btn_xitong.tag = 3;
+//    self.btn_xitong = btn_xitong;
+//    [topview addSubview:btn_xitong];
+//
+//    //公共消息
+//    UIButton *btn_gonggong = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn_gonggong setImage:kIMG(@"message_gonggong") forState:UIControlStateNormal];
+//    btn_gonggong.frame = CGRectMake(kVIEW_BX(btn_xitong)+btnSpace, kVIEW_TY(btn_tiezi), btnWidth, btnHeigh);
+//    btn_gonggong.exclusiveTouch = YES;
+//    btn_gonggong.tag = 4;
+//    [btn_gonggong addTarget:self action:@selector(topButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+//    self.btn_gonggong = btn_gonggong;
+//    [self resetButtonTitlePos:btn_gonggong WithTitle:@"公共消息"];
+//    [topview addSubview:btn_gonggong];
+//}
 
 
 #pragma mark - 请求数据
@@ -258,27 +258,27 @@
 
 #pragma mark - Action methods
 //添加按钮 我的帖子 坛友互动 系统提醒 公共消息
-- (IBAction)topButtonClick:(id)sender
-{
-    if (sender) {
-        if (sender == _btn_tiezi || [sender tag] == 1001) {
-            //帖子消息
-            
-        }
-        else if (sender == _btn_tanyou || [sender tag] == 1002) {
-            //坛友互动
-            
-        }
-        else if (sender == _btn_tanyou || [sender tag] == 1003) {
-            //系统提醒
-            
-        }
-        else if (sender == _btn_gonggong || [sender tag] == 1004) {
-            //公共消息
-            
-        }
-    }
-}
+//- (IBAction)topButtonClick:(id)sender
+//{
+//    if (sender) {
+//        if (sender == _btn_tiezi || [sender tag] == 1001) {
+//            //帖子消息
+//
+//        }
+//        else if (sender == _btn_tanyou || [sender tag] == 1002) {
+//            //坛友互动
+//
+//        }
+//        else if (sender == _btn_tanyou || [sender tag] == 1003) {
+//            //系统提醒
+//
+//        }
+//        else if (sender == _btn_gonggong || [sender tag] == 1004) {
+//            //公共消息
+//
+//        }
+//    }
+//}
 
 //点击返回按钮
 - (IBAction)backAction:(id)sender
@@ -348,7 +348,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 120+15;
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -363,10 +363,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *viewww = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 120+15)];
+    UIView *viewww = [[UIView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 0)];
     viewww.backgroundColor = kCOLOR_BG_GRAY;
-    [viewww addSubview:_topView];
-    UIImageView *iv_sper = [[UIImageView alloc]initWithFrame:CGRectMake(0, kVIEW_BY(_topView), kSCREEN_WIDTH, 0.5)];
+    //    [viewww addSubview:_topView];
+    UIImageView *iv_sper = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, 1)];
     [viewww addSubview:iv_sper];
     return viewww;
 }
