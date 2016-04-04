@@ -483,7 +483,7 @@ typedef enum {
     WEAKSELF
     [_bridge callHandler:@"getPostData" data:nil responseCallback:^(id responseData) {
         NSString *favoImgName = [Util isFavoed_withID:_postModel.tid forType:myPost] ? @"detail_favo_H" : @"favo_N";
-        NSArray *titls = @[@"收藏",@"分享", @"跳页",@"跳楼",@"举报"];
+        NSArray *titls = @[@"收藏",@"分享", @"跳页",@"跳转楼层",@"举报"];
         NSArray *imgsN = @[favoImgName,@"share_N", @"jump_N",@"detail_tiaolou",@"jubao"];
         NSArray *imgsH = @[favoImgName,@"share_N", @"jump_N",@"detail_tiaolou",@"jubao"];
         NSString *fid = responseData[@"fid"];
@@ -491,7 +491,7 @@ typedef enum {
         NSString *ismoderator = responseData[@"ismoderator"];
         //for test - by ximi
         if (ismoderator && ismoderator.intValue == 1) {
-            titls = @[@"收藏",@"分享", @"跳页",@"跳楼",@"举报",@"删除主题"];
+            titls = @[@"收藏",@"分享", @"跳页",@"跳转楼层",@"举报",@"删除主题"];
             imgsN = @[favoImgName,@"share_N", @"jump_N",@"detail_tiaolou",@"jubao",@"detail_delete"];
             imgsH = @[favoImgName,@"share_N", @"jump_N",@"detail_tiaolou",@"jubao",@"detail_delete"];
         }

@@ -212,7 +212,7 @@
 {
     if (_fromShouYe) {
         if (!_forumsModel || _selectedForumIndex == -1) {
-            [self showHudTipStr:@"请选择要发帖的版块儿"];
+            [self showHudTipStr:@"请选择要发帖的版块"];
             return;
         }
         CheckPostModel *checkModel = _permissionDic[_forumsModel.fid];
@@ -619,14 +619,14 @@
 
 - (void)resetSelectedValue
 {
-    NSString *showTitle = @"请选择要发帖的版块儿";
+    NSString *showTitle = @"请选择要发帖的版块";
     
     NSInteger selectBoardIndex = [_picker selectedRowInComponent:0];
     NSInteger selectForumIndex = [_picker selectedRowInComponent:1];
 
     if (_dataSourceArray.count > selectBoardIndex) {
         _selectedBoardIndex = selectBoardIndex;
-        showTitle = @"请选择要发帖的版块儿";
+        showTitle = @"请选择要发帖的版块";
         BoardModel *board = _dataSourceArray[selectBoardIndex];
         if (board.forums.count > selectForumIndex-1) {
             _selectedForumIndex = selectForumIndex-1;
@@ -678,7 +678,7 @@
 //            _selectedSubForumIndex = -1;
 //        }
 //    }
-    if ([@"请选择要发帖的版块儿" isEqualToString:showTitle]) {
+    if ([@"请选择要发帖的版块" isEqualToString:showTitle]) {
         self.forumsModel = nil;
     }
     self.showSelectedForumsTitle = showTitle;
@@ -706,7 +706,7 @@
 
 - (void)checkPermissionForSendPost
 {
-    if (_showSelectedForumsTitle && ![_showSelectedForumsTitle isEqualToString:@"请选择要发帖的版块儿"]) {
+    if (_showSelectedForumsTitle && ![_showSelectedForumsTitle isEqualToString:@"请选择要发帖的版块"]) {
         NSString *fid = nil;
         BoardModel *board = _dataSourceArray[_selectedBoardIndex];
         ForumsModel *forum = board.forums[_selectedForumIndex];
@@ -724,7 +724,7 @@
                 [self request_PermissionForSendPost:fid];
             }
         } else {
-            [self showHudTipStr:@"请重新选择版块儿"];
+            [self showHudTipStr:@"请重新选择版块"];
             return;
         }
     }

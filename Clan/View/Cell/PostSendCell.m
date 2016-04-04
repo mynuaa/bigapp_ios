@@ -29,7 +29,7 @@ static const NSInteger kKeyboardView_Height = 216;
         _selectedForumsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_selectedForumsBtn setBackgroundImage:[Util imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
         _selectedForumsBtn.exclusiveTouch = YES;
-        [_selectedForumsBtn setTitle:@"请选择要发帖的版块儿" forState:UIControlStateNormal];
+        [_selectedForumsBtn setTitle:@"请选择要发帖的版块" forState:UIControlStateNormal];
         _selectedForumsBtn.titleLabel.font = [UIFont fontWithSize:14.f];
         [_selectedForumsBtn setTitleColor:K_COLOR_DARK_Cell forState:UIControlStateNormal];
         [self.contentView addSubview:_selectedForumsBtn];

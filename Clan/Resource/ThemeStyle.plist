@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>YZSegMent</key>
-	<string>36,170,21</string>
+	<string>30,86,142</string>
 	<key>YZBBSName</key>
-	<string>BigApp</string>
+	<string>MyNUAA</string>
 	<key>YZBaseURL</key>
-	<string>http://bbs.bigappdemo.com</string>
+	<string>http://my.nuaa.edu.cn</string>
 	<key>YZBasePath</key>
 	<string>api/mobile/iyz_index.php</string>
 	<key>BIGAPPVERSION</key>
@@ -34,6 +34,8 @@
 	<string>QBWUohHz82fpd55h</string>
 	<key>ShareAppRedirectUriSina</key>
 	<string>https://api.weibo.com/oauth2/default.html</string>
+	<key>New item</key>
+	<string></string>
 	<key>open_image_mode</key>
 	<string>1</string>
 </dict>

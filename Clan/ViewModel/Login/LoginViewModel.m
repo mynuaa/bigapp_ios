@@ -55,10 +55,6 @@
 - (BOOL)approveWithUserName:(NSString *)username andPassWord:(NSString *)password andFid:(NSString *)fid{
     _username = username;
     _password = password;
-    if (!username || !password || username.length == 0 || password.length == 0) {
-        [self showHudTipStr:@"请输入账号密码"];
-        return NO;
-    }
     [self showHudWithTitleDefault:@"正在登录"];
     return YES;
 }

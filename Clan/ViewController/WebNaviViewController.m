@@ -80,7 +80,7 @@
                     UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:send];
                     [strongSelf presentViewController:navi animated:YES completion:NULL];
                 } else {
-                    [strongSelf showHudTipStr:@"抱歉，暂无板块儿可以发帖！"];
+                    [strongSelf showHudTipStr:@"抱歉，暂无板块可以发帖！"];
                 }
             }
         }];

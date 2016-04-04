@@ -96,6 +96,26 @@
     [self.view addSubview:autoSv];
     autoSv.contentSize = CGSizeMake(kSCREEN_WIDTH, kSCREEN_HEIGHT);
     
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * path = [paths objectAtIndex:0];
+    NSString *Files = @"Account";
+    NSFileManager * fm = [NSFileManager defaultManager];
+    NSString *filePath =[NSString stringWithFormat:@"%@/%@",path,Files];
+    if (![fm fileExistsAtPath:filePath]) {
+        [fm createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    NSString * docDir = [filePath stringByAppendingPathComponent:@"account.plist"];
+    NSMutableDictionary *loaddic = [NSMutableDictionary dictionaryWithContentsOfFile:docDir];
+    NSString *name =[loaddic objectForKey:@"name"];
+    NSString *password =[loaddic objectForKey:@"password"];
+    self.textAccount.text = name;
+    self.textPassword.text = password;
+    
+    if (self.textAccount.text) {
+        _tf_name = name;
+        _tf_pwd = password;
+    }
+    else {
     _tf_name = [self creatFieldWithPlaceholder:@"账户名"];
     _tf_pwd = [self creatFieldWithPlaceholder:@"密码"];
     _tf_pwd.secureTextEntry = YES;
@@ -104,6 +124,20 @@
     _tf_ask.text = @"安全提问 (如无设置请忽略)";
     _tf_ask.textColor = K_COLOR_DARK_Cell;
     _tf_ask.font = [UIFont fontWithSize:15.f];
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString * path = [paths objectAtIndex:0];
+        NSString *Files = @"Account";
+        NSFileManager * fm = [NSFileManager defaultManager];
+        NSString *filePath =[NSString stringWithFormat:@"%@/%@",path,Files];
+        if (![fm fileExistsAtPath:filePath]) {
+            [fm createDirectoryAtPath:filePath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        
+        NSString * docDir = [filePath stringByAppendingPathComponent:@"account.plist"];
+        NSMutableDictionary * loaddic = [NSMutableDictionary dictionaryWithObjectsAndKeys:self.textAccount.text,@"账户名",self.textPassword.text,@"密码",nil];
+        [loaddic writeToFile:docDir atomically:YES];
+    }
+    
     
     //table
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 31, ScreenWidth, 45*3) style:UITableViewStyleGrouped];
@@ -668,13 +702,13 @@
 }
 - (void)dealloc
 {
-    DLog(@"LoginViewController dealloc");
-    [self.view endEditing:YES];
-    _tableView.delegate = nil;
-    _tableView.dataSource = nil;
-    _tf_pwd.delegate = nil;
-    _tf_answer.delegate = nil;
-    _tf_name.delegate = nil;
+    //DLog(@"LoginViewController dealloc");
+    //[self.view endEditing:YES];
+    //_tableView.delegate = nil;
+    //_tableView.dataSource = nil;
+    //_tf_pwd.delegate = nil;
+    //_tf_answer.delegate = nil;
+    //_tf_name.delegate = nil;
     
 }
 
