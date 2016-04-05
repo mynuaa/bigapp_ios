@@ -154,7 +154,6 @@
             return;
         }
         QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
-        imagePickerController.filterType = QBImagePickerControllerFilterTypePhotos;
         imagePickerController.delegate = self;
         imagePickerController.allowsMultipleSelection = YES;
         imagePickerController.maximumNumberOfSelection = _isCoverPhoto ? 1 : 9-_sendModel.imageArray.count;

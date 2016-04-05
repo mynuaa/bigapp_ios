@@ -220,7 +220,7 @@
         if (_forumsModel.allowspecialonly && ![_forumsModel.allowspecialonly isEqualToString:@"0"]) {
             [SVProgressHUD dismiss];
             //不支持活动 直接跳转
-            [self showHudTipStr:@"该版块儿不支持发表普通主题"];
+            [self showHudTipStr:@"该版块不支持发表普通主题"];
             return;
         }
         if (checkModel && checkModel.allowperm.allowpost.intValue != 1){
@@ -425,7 +425,7 @@
         }
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
-        picker.allowsEditing = NO;//设置可编辑
+        picker.allowsEditing = NO;//设置可编辑,此处是自动默认设置成正方形
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:picker animated:YES completion:nil];//进入照相界面
     }else if (buttonIndex == 1){
@@ -434,12 +434,13 @@
             return;
         }
         QBImagePickerController *imagePickerController = [[QBImagePickerController alloc] init];
-        imagePickerController.filterType = QBImagePickerControllerFilterTypePhotos;
         imagePickerController.delegate = self;
-        imagePickerController.allowsMultipleSelection = YES;
-        imagePickerController.maximumNumberOfSelection = 9-_sendModel.imageArray.count;
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
-        [self presentViewController:navigationController animated:YES completion:NULL];
+        imagePickerController.allowsMultipleSelection = YES;//允许选择多张图片
+        imagePickerController.maximumNumberOfSelection = 9-_sendModel.imageArray.count;//选择图片张数的最大值
+        imagePickerController.showsNumberOfSelectedAssets = YES;//显示选择的图片张数
+//        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
+//        [self presentViewController:navigationController animated:YES completion:NULL];
+        [self presentViewController:imagePickerController animated:YES completion:NULL];
     }
     
 }
@@ -480,18 +481,43 @@
 }
 
 #pragma mark QBImagePickerControllerDelegate
-- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didSelectAssets:(NSArray *)assets{
-    for (ALAsset *assetItem in assets) {
-        ALAssetRepresentation *assetRep = [assetItem defaultRepresentation];
-        UIImage *highQualityImage = [UIImage fullResolutionImageFromALAsset:assetItem];
-        SendImage *sendImg = [SendImage sendImageWithImage:[highQualityImage scaledToSize:kScreen_Bounds.size highQuality:NO]];
-        sendImg.fileName = assetRep.filename;
-        sendImg.size = assetRep.size / 1024;
-        sendImg.fileType = [assetRep.filename componentsSeparatedByString:@"."][1];
-        NSMutableArray *tweetImages = [_sendModel mutableArrayValueForKey:@"imageArray"];
-        [tweetImages addObject:sendImg];
+//- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didSelectAssets:(NSArray *)assets{
+//    for (ALAsset *assetItem in assets) {
+//        ALAssetRepresentation *assetRep = [assetItem defaultRepresentation];
+//        UIImage *highQualityImage = [UIImage fullResolutionImageFromALAsset:assetItem];
+//        SendImage *sendImg = [SendImage sendImageWithImage:[highQualityImage scaledToSize:kScreen_Bounds.size highQuality:NO]];
+//        sendImg.fileName = assetRep.filename;
+//        sendImg.size = assetRep.size / 1024;
+//        sendImg.fileType = [assetRep.filename componentsSeparatedByString:@"."][1];
+//        NSMutableArray *tweetImages = [_sendModel mutableArrayValueForKey:@"imageArray"];
+//        [tweetImages addObject:sendImg];
+//    }
+//    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
+- (void)qb_imagePickerController:(QBImagePickerController *)imagePickerController didFinishPickingAssets:(NSArray *)assets {
+    PHImageManager* manager = [PHImageManager defaultManager];
+    PHImageRequestOptions* option = [[PHImageRequestOptions alloc] init];
+    ALAssetsLibrary* assetslibrary = [[ALAssetsLibrary alloc] init];
+    for (PHAsset *asset in assets) {
+        [manager requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+            NSString* identifier = [asset.localIdentifier componentsSeparatedByString:@"/"][0];
+            NSURL* assetUrl = [NSURL URLWithString:[NSString stringWithFormat:@"assets-library://asset/asset.%@?id=%@&ext=%@", dataUTI, identifier, dataUTI]];
+            [assetslibrary assetForURL:assetUrl resultBlock:^(ALAsset *asset) {
+                ALAssetRepresentation* assetRep = [asset defaultRepresentation];
+                UIImage *highQualityImage = [UIImage fullResolutionImageFromALAsset:asset];
+                SendImage *sendImg = [SendImage sendImageWithImage:[highQualityImage scaledToSize:kScreen_Bounds.size highQuality:NO]];
+                sendImg.fileName = assetRep.filename;
+                sendImg.size = assetRep.size / 1024;
+                sendImg.fileType = [assetRep.filename componentsSeparatedByString:@"."][1];
+                NSMutableArray *tweetImages = [_sendModel mutableArrayValueForKey:@"imageArray"];
+                [tweetImages addObject:sendImg];
+                [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+            } failureBlock:^(NSError *error) {
+                
+            }];
+        }];
     }
-    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)qb_imagePickerControllerDidCancel:(QBImagePickerController *)imagePickerController{
