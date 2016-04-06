@@ -55,17 +55,38 @@
 
 4、编译运行应用。
 
+# V1.0.2 更新说明
+##增加了cocoapod包管理方式
+	增加了cocoapod包管理方式，更加方便地管理各种库。目前只用其管理QBImagePickerController
+##优化了相册的显示问题
+	通过最新版(3.4.0)的QBImagePickerController，优化了相册照片的起始位置。起始位置改为了最底部（即最新拍摄的照片）
+	
+	本次优化得益于PM的指教，在插入QBImagePickerController库后修改了回调函数，修改方式在PostSendViewController.m中，原代码已被注释。
+	
+	另外，增加了“imagePickerController.showsNumberOfSelectedAssets = YES;//显示选择的图片张数”的语句，方便查看。后期可改为NO即可关闭此功能。
 
+>纸飞机南航青年网络社区
+
+>2016.4.2  monkeyclue@163.com
+	
 # V1.0.1 更新说明
 
->去掉了站内信tab内顶部的四个按钮，因为没有对应的接口（1001、1002、1003、1004）
+##优化掉了部分功能
+	去掉了站内信tab内顶部的四个按钮,因为没有对应的接口（1001、1002、1003、1004）
+	
     monkey在messageVC.m中注释掉了相关代码，并对UI进行了一部分更改。
+    
     所有更改都有注释，以便在今后增加这四个接口后能迅速修改代码。
 
->修改了“关于我们”的显示方式
-    AboutViewControllert.m里，自动调用version改成了直接打印数字,
-    主要考虑到version值会被后台插件调用来验证插件版本和bigapp版本是否对应。
+
+##修改了“关于我们”的显示方式
+
+    AboutViewControllert.m里，自动调用version改成了直接打印数字,主要考虑到version值会被后台插件调用来验证插件版本和bigapp版本是否对应。
+
     因此关于我们的版本号是指纸飞机自身的版本号。并且增加了一些信息，如更新时间、iOS支持邮箱等。
+
+
+>纸飞机南航青年网络社区
 
 >2016.4.2  monkeyclue@163.com
 
