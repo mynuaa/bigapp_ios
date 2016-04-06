@@ -49,7 +49,7 @@
     lbl_version.font = [UIFont fontWithSize:14.f];
     lbl_version.textColor = K_COLOR_DARK_Cell;
     lbl_version.textAlignment = NSTextAlignmentCenter;
-    lbl_version.text = [NSString stringWithFormat:@"版本号：1.0.1 (%@)",[NSString returnStringWithPlist:kBIGAPPVERSION]];
+    lbl_version.text = [NSString stringWithFormat:@"版本号：1.0.2 (%@)",[NSString returnStringWithPlist:kBIGAPPVERSION]];
     [scrolview addSubview:lbl_version];
     
     
@@ -57,7 +57,7 @@
     lbl_time.font = [UIFont fontWithSize:14.f];
     lbl_time.textColor = K_COLOR_DARK_Cell;
     lbl_time.textAlignment = NSTextAlignmentCenter;
-    lbl_time.text = [NSString stringWithFormat:@"发布时间：2016.4.2  22:43"];
+    lbl_time.text = [NSString stringWithFormat:@"发布时间：2016.4.5  20:00"];
     [scrolview addSubview:lbl_time];
     
     UILabel *lbl_Repairer = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_time)+2, kSCREEN_WIDTH-30, 20)];
@@ -87,7 +87,7 @@
     lbl_upgrade.font = [UIFont fontWithSize:14.f];
     lbl_upgrade.textColor = K_COLOR_DARK_Cell;
     lbl_upgrade.textAlignment = NSTextAlignmentLeft;
-    lbl_upgrade.text = [NSString stringWithFormat:@"优化掉了暂时未完成接口的功能；\n加入了新的注释；\n完成了“关于我们”的更新。\n\n\n\n\n\n"];//此处提行挤居上
+    lbl_upgrade.text = [NSString stringWithFormat:@"优化了相册方面的功能：\n相册的调用改为最新；\n增加了显示选择照片张数的功能；\n优化了其他bug。\n感谢PM的帮助么么哒( ´▽｀)\n\n\n\n"];//此处提行挤居上
     [scrolview addSubview:lbl_upgrade];
     
     UIFont *desFont = [UIFont fontWithSize:12.f];

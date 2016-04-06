@@ -49,7 +49,7 @@
     UIImageView *bgView = [UIImageView new];
     bgView.frame = CGRectMake(0, 0, kSCREEN_WIDTH, kSCREEN_HEIGHT);
     NSString *imgName = [Util splashImageName];
-    UIImage *splashImage = kIMG(imgName);
+    UIImage *splashImage = [UIImage imageWithData: [NSData dataWithContentsOfURL: [NSURL URLWithString: @"http://my.nuaa.edu.cn/forum_static/myapp/splash.png"]]];
     bgView.image = splashImage;
     [self.view addSubview:bgView];
 }
