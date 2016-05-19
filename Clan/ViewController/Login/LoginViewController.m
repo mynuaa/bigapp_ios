@@ -145,7 +145,7 @@
     _tableView.dataSource = self;
     _tableView.delegate = self;
     _tableView.separatorColor = K_COLOR_MOST_LIGHT_GRAY;
-    _tableView.scrollEnabled = NO;
+    _tableView.scrollEnabled = YES;
     [autoSv addSubview:_tableView];
     
     //默认开启注册入口

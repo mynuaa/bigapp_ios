@@ -67,7 +67,7 @@ static const NSInteger kKeyboardView_Height = 216;
         _tweetContentView.backgroundColor = [UIColor clearColor];
         _tweetContentView.font = [UIFont fitFontWithSize:17.f];
         _tweetContentView.delegate = self;
-        _tweetContentView.placeholder = @"说点什么吧~";
+        _tweetContentView.placeholder = @"说点什么吧~😱😱";
         _tweetContentView.returnKeyType = UIReturnKeyDefault;
         [self.contentView addSubview:_tweetContentView];
     }

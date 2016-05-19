@@ -49,7 +49,7 @@ static float interval = 60.f;
     //初始化页面
 //    [self initViewController];
     [self loadBoardStyleVC:NO];
-    
+
     UISegmentedControl *statFilter = [[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"首页", @"论坛", nil]];
     statFilter.layer.cornerRadius = 13.f;
     statFilter.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -72,6 +72,8 @@ static float interval = 60.f;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationCome:) name:@"Avatar_Changed" object:nil];
     [self segmentedControlValueChanged];
 }
+
+
 
 - (void)dealloc
 {

@@ -187,7 +187,7 @@ NSString * const ID = @"cycleCell";
         self.mainView.scrollEnabled = YES;
         [self setAutoScroll:self.autoScroll];
     } else {
-        self.mainView.scrollEnabled = NO;
+        self.mainView.scrollEnabled = YES;
     }
     
     [self setupPageControl];

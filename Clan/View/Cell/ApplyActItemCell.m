@@ -85,7 +85,7 @@
     textView.selectable = YES;
     textView.dataDetectorTypes = UIDataDetectorTypeLink;
     [textView setEditable:NO];
-    textView.scrollEnabled = NO;
+    textView.scrollEnabled = YES;
     self.tv_content = textView;
     [contentview addSubview:textView];
 

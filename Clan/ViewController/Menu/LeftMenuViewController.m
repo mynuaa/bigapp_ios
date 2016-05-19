@@ -198,7 +198,7 @@
     tableView.dataSource = self;
     tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView = tableView;
-    _tableView.scrollEnabled = NO;
+    _tableView.scrollEnabled = YES;
     [_sv_content addSubview:tableView];
     [Util setExtraCellLineHidden:_tableView];
     [self resetContentSize];

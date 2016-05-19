@@ -1,4 +1,4 @@
-//
+ //
 //  Clan_NetAPIManager.m
 //  Clan
 //
@@ -549,7 +549,8 @@ static NSString *product_kurl_base_path_test = @"http://10.2.29.10/product/ui/ht
     }
     NSString *oriStr = avoidNullStr([sendModel.message  aliasedString]) ;
     NSString *strAvoidEmoji = avoidNullStr([oriStr removeEmoji]);
-    [dic setObject:[NSString stringWithFormat:@"%@%@",strAvoidEmoji,attachString] forKey:@"message"];
+    //[dic setObject:[NSString stringWithFormat:@"%@%@",strAvoidEmoji,attachString] forKey:@"message"];
+    [dic setObject:[NSString stringWithFormat:@"%@%@",oriStr,attachString] forKey:@"message"];
 
     NSString *module;
     NSString *type;

@@ -49,7 +49,7 @@
     lbl_version.font = [UIFont fontWithSize:14.f];
     lbl_version.textColor = K_COLOR_DARK_Cell;
     lbl_version.textAlignment = NSTextAlignmentCenter;
-    lbl_version.text = [NSString stringWithFormat:@"版本号：1.0.3 (%@)",[NSString returnStringWithPlist:kBIGAPPVERSION]];
+    lbl_version.text = [NSString stringWithFormat:@"版本号：1.0.4 (%@)",[NSString returnStringWithPlist:kBIGAPPVERSION]];
     [scrolview addSubview:lbl_version];
     
     
@@ -57,7 +57,7 @@
     lbl_time.font = [UIFont fontWithSize:14.f];
     lbl_time.textColor = K_COLOR_DARK_Cell;
     lbl_time.textAlignment = NSTextAlignmentCenter;
-    lbl_time.text = [NSString stringWithFormat:@"发布时间：2016.4.6  20:53"];
+    lbl_time.text = [NSString stringWithFormat:@"发布时间：2016.5.20  01:59"];
     [scrolview addSubview:lbl_time];
     
     UILabel *lbl_Repairer = [[UILabel alloc]initWithFrame:CGRectMake(15, kVIEW_BY(lbl_time)+2, kSCREEN_WIDTH-30, 20)];
@@ -87,7 +87,7 @@
     lbl_upgrade.font = [UIFont fontWithSize:14.f];
     lbl_upgrade.textColor = K_COLOR_DARK_Cell;
     lbl_upgrade.textAlignment = NSTextAlignmentLeft;
-    lbl_upgrade.text = [NSString stringWithFormat:@"加入了网页推送启动页的功能：\n优化了其他bug。\n感谢PM的帮助么么哒( ´▽｀)\n\n\n\n\n\n"];//此处提行挤居上
+    lbl_upgrade.text = [NSString stringWithFormat:@"修复了无法发送emoji数据的bug。\n修复了无法发送特殊字符如箭头的bug。\n增加了点击顶部导航栏跳转到顶部的功能\n\n注：\n  emoji需要等待论坛的数据库支持。\n  回到顶部功能在某些页面不适用。\n\n"];//此处提行挤居上
     [scrolview addSubview:lbl_upgrade];
     
     UIFont *desFont = [UIFont fontWithSize:12.f];
@@ -98,7 +98,7 @@
     tv.backgroundColor = kCLEARCOLOR;
     tv.textColor = K_COLOR_DARK_Cell;
     tv.font = desFont;
-    tv.scrollEnabled = NO;
+    tv.scrollEnabled = YES;
     tv.editable = NO;
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     paragraphStyle.lineSpacing = 6;// 字体的行间距

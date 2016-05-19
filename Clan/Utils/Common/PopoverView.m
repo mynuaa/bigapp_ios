@@ -142,7 +142,7 @@
     _tableView.alwaysBounceVertical = NO;
     _tableView.showsHorizontalScrollIndicator = NO;
     _tableView.showsVerticalScrollIndicator = NO;
-    _tableView.scrollEnabled = NO;
+    _tableView.scrollEnabled = YES;
     _tableView.tableFooterView = [[UIView alloc]init];
     _tableView.backgroundColor = [UIColor clearColor];
     

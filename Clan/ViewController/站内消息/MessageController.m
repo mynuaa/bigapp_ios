@@ -54,7 +54,7 @@
     float height = self.tabBarController ? kSCREEN_HEIGHT-64-kTABBAR_HEIGHT : kSCREEN_HEIGHT-64;
     UIScrollView *sv = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0, kSCREEN_WIDTH, height)];
     sv.delegate = self;
-    sv.scrollEnabled = NO;
+    sv.scrollEnabled = YES;
     sv.showsHorizontalScrollIndicator = NO;
     sv.showsVerticalScrollIndicator = NO;
     sv.pagingEnabled = YES;
