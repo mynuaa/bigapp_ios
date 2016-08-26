@@ -88,6 +88,18 @@
     [magngerKeyboard disableInViewControllerClass:NSClassFromString(@"PostSendViewController")];
     [magngerKeyboard disableInViewControllerClass:NSClassFromString(@"PostActivityViewController")];
     [magngerKeyboard disableInViewControllerClass:NSClassFromString(@"PostActivityInfoVC")];
+    
+    @autoreleasepool {
+        UIWebView* tempWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSString* userAgent = [tempWebView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        NSString *ua = [NSString stringWithFormat:@"%@ %@",
+                        userAgent,
+                        @"My_APP"];
+        [[NSUserDefaults standardUserDefaults] registerDefaults:@{@"UserAgent" : ua, @"User-Agent" : ua}];
+#if !__has_feature(objc_arc)
+        [tempWebView release];
+#endif
+    }
 
     [magngerKeyboard disableToolbarInViewControllerClass:NSClassFromString(@"PostDetailVC")];
     [magngerKeyboard disableToolbarInViewControllerClass:NSClassFromString(@"PostDetailViewController")];
